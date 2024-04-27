@@ -1,0 +1,263 @@
+﻿@{
+    ViewBag.Title = "Welcome to the IPL Website";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="background-image: url('https://www.iplt20.com/assets/images/ipl-share-img.png');">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Catch The Live Action!</h5>
+                <p>From 22 March to 26 May</p>
+            </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c402cf40757809.578c7ecde7ecd.jpg');">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Highlights</h5>
+                <p>Mumbai Indians Vs Chennai Super kings</p>
+            </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('https://bcciplayerimages.s3.amazonaws.com/resizedimageskirti/1703399918_WhatsApp%2520Image%25202023-12-24%2520at%252012_compress.jpeg');">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Top Buys<h5>
+                <p>IPL Auction 2024</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main role="main" class="container main">
+    <h1>Welcome to the IPL Website</h1>
+    <p>This is a prototype website for the Indian Premier League.</p>
+   <div class="gallery row">
+        <div class="col-md-4">
+          <a href="https://www.youtube.com/results?search_query=ipl+highlights+2024" target="_blank">
+            <img src="~/Images/high.jpeg" alt="Gallery Image 1">
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="https://www.iplt20.com/stats/2024" target="_blank">
+            <img src="~/Images/stats.jpeg" alt="Gallery Image 2">
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="https://www.google.com/search?q=ipl+schedule+2024&sca_esv=2386da0e1e038e73&sca_upv=1&rlz=1C1PNFE_enUS1091US1092&sxsrf=ACQVn0_lKC7cbmhSXS54qrqWkdsI1fYCrA%3A1713723290045&ei=mlclZsqmAqnnkvQPxoOtuAQ&oq=Ipl+&gs_lp=Egxnd3Mtd2l6LXNlcnAiBElwbCAqAggCMgoQIxiABBgnGIoFMgQQIxgnMgoQIxiABBgnGIoFMhAQABiABBixAxhDGIMBGIoFMhAQABiABBixAxhDGIMBGIoFMhAQABiABBixAxhDGIMBGIoFMhAQABiABBixAxhDGIMBGIoFMhAQABiABBixAxhDGIMBGIoFMhAQABiABBixAxhDGIMBGIoFMhAQABiABBixAxhDGIMBGIoFSIEYUABY0AVwAHgAkAEAmAGAAaABtgOqAQMxLjO4AQPIAQD4AQGYAgSgAv0DwgIQEC4YgAQYsQMYQxiDARiKBcICChAAGIAEGEMYigXCAhAQABiABBixAxiDARgUGIcCmAMAkgcDMC40oAfjKA&sclient=gws-wiz-serp#sie=lg;/g/11v0gsbybs;5;/m/03b_lm1;mt;fp;1;;;" target="_blank">
+            <img src="~/Images/fix.jpeg" alt="Gallery Image 3">
+          </a>
+        </div>
+      </div>
+
+    <div class="upcoming-matches container main" style="margin-top: 20px;">
+        <h2>Upcoming Matches</h2>
+        <br />
+        <div class="row">
+        @foreach(var match in Model)
+        {
+            <div class="col-md-3">
+                <div class="match-card" style="background: #006cb7; color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                    <h5>MATCH @match.MatchId - @match.TeamOne vs @match.TeamTwo</h5>
+                    <p>@match.MatchTime.ToString("MMMM dd, yyyy HH:mm")</p>
+                </div>
+            </div>
+        }
+    </div>
+    </div>
+    <style>
+  .container1 {
+      display: flex; 
+  }
+  .box {
+      width: 50%; 
+      padding: 10px; 
+
+  }
+  .response-container {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.delete-response {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 0 5px;
+    cursor: pointer;
+}
+
+.delete-response:hover {
+    opacity: 0.8;
+}
+
+      
+</style>
+
+<div class="container1">
+  <div class="box"><form id="pollForm">
+    <h2>Team Win Prediction Poll</h2>
+    <label for="email">Your Email:</label>
+    <input type="email" id="email" name="email" required>
+    <label for="team">Choose a team:</label>
+    <select id="team" name="team">
+        <option value="Team A">Team A</option>
+        <option value="Team B">Team B</option>
+    </select>
+    <button type="button" onclick="submitPoll()">Submit</button>
+                <button type="button" onclick="viewResponses1(); ViewDoughnut();insertBarGraphHeading();">View Responses</button>
+</form></div>
+<br />
+        <div class="box"><div id="responses"></div></div>
+</div>
+
+    <canvas id="voteChart"></canvas>
+
+    <div class="container1">
+        <div class="box">
+            
+            <canvas id="voteChartPie"></canvas>
+        </div>
+        <div class="box">
+            
+            <canvas id="voteChartDoughnut"></canvas>
+        </div>
+    </div>
+   
+
+<script src="~/js/script.js"></script>
+
+    <div class="container">
+        <h2 class="title">What's your opinion about today's Match?</h2>
+        <div class="input-group">
+            <input type="text" id="opinionInput" class="input-text" placeholder="Enter your opinion here">
+            <button class="btn" onclick="addOrUpdateOpinion()">Submit Opinion</button>
+        </div>
+        <ul id="opinionsList" class="opinion-list"></ul>
+    </div>
+    <style>
+
+.input-text {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn {
+    width: 25%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.opinion-list {
+    list-style: none;
+    padding: 0;
+}
+
+.opinion-list li {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.opinion-list li input[type="text"] {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 8px;
+}
+
+.opinion-list li .btn {
+    padding: 8px 12px;
+    width: auto;
+}
+
+.opinion-list li .btn-edit, .opinion-list li .btn-delete {
+    background-color: #FFC107;
+}
+
+.opinion-list li .btn-delete {
+    background-color: #DC3545;
+}
+    </style>
+    <script>
+let opinions = [];
+let currentlyEditingIndex = -1;
+
+function addOrUpdateOpinion() {
+    const input = document.getElementById('opinionInput');
+    if (input.value.trim() === '') return;
+
+    if (currentlyEditingIndex === -1) {
+        
+        opinions.push(input.value);
+    } else {
+        
+        opinions[currentlyEditingIndex] = input.value;
+        currentlyEditingIndex = -1;
+    }
+
+    input.value = '';  
+    updateOpinionsList();
+}
+
+function updateOpinionsList() {
+    const list = document.getElementById('opinionsList');
+    list.innerHTML = '';  
+    opinions.forEach((opinion, index) => {
+        const listItem = document.createElement('li');
+        const textInput = document.createElement('input');
+        textInput.type = 'text';
+        textInput.value = opinion;
+        textInput.disabled = true;
+
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.onclick = () => editOpinion(index, textInput);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = () => deleteOpinion(index);
+
+        listItem.appendChild(textInput);
+        listItem.appendChild(editButton);
+        listItem.appendChild(deleteButton);
+
+        list.appendChild(listItem);
+    });
+}
+
+function editOpinion(index, textInput) {
+    currentlyEditingIndex = index;
+    const input = document.getElementById('opinionInput');
+    input.value = opinions[index];
+    textInput.disabled = false;
+    input.focus();
+}
+
+function deleteOpinion(index) {
+    opinions.splice(index, 1);
+    updateOpinionsList();
+}
+
+
+
+</script>
+
+</main>

@@ -1,0 +1,87 @@
+﻿@model ipl.Models.PointsTableViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>IPL Points Table</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="~/css/PointsTable.css" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <a class="navbar-brand" href="">IPL</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="@Url.Action("Index", "Home")">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Standings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Classes" asp-action="Index">Standings_DB</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Images/Datamodel.png">DataModel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("About", "Home")"">About</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="container points-table-container">
+        <h1>Points Table</h1>
+        <table class="points-table">
+            <thead class="head">
+                <tr>
+                    <th>Position</th>
+                    <th>TeamName</th>
+                    <th>Played</th>
+                    <th>Won</th>
+                    <th>Lost</th>
+                    <th>NoResult</th>
+                    <th>NetRunRate</th>
+                    <th>Points</th>
+                    <th>RecentForm</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var team in Model.Points)
+                {
+                    <tr>
+                        <td>@team.Position</td>
+                        <td>@team.TeamName</td>
+                        <td>@team.Played</td>
+                        <td>@team.Won</td>
+                        <td>@team.Lost</td>
+                        <td>@team.NoResult</td>
+                        <td>@team.NetRunRate</td>
+                        <td>@team.Points</td>
+                        <td class="recent-form">@team.RecentForm</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </main>
+   <!--- <footer class="footer">
+        <div class="container">
+            <span>© 2024 IPL. All rights reserved.</span>
+        </div>
+        </footer> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

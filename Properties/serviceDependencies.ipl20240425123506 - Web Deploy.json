@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/ipl20240425123506/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsiplContext_5BBDA82564",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/ipldbserver/databases/ipl_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:iplContext",
+      "dynamicId": null
+    }
+  }
+}

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ipl.Models.Class>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TeamName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Played)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Won)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoResult)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NetRunRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Points)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RecentForm)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Played)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Won)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoResult)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetRunRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Points)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecentForm)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Position">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Position">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Position">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
